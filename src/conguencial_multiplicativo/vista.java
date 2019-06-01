@@ -14,12 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class vista extends javax.swing.JFrame {
 
-    double prom = 0;
-    double prom2 = 0;
-    double z;
-    double divisor = Math.sqrt(0.0833333333);
-    int modulo = 0;
-
     /**
      * Creates new form vista
      */
@@ -37,45 +31,56 @@ public class vista extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jFrame1 = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cbxSemilla = new javax.swing.JComboBox<>();
-        txtConsM = new javax.swing.JTextField();
-        txtModulo = new javax.swing.JTextField();
+        cbP = new javax.swing.JComboBox<>();
         btnCalcular = new javax.swing.JButton();
-        cajaSalida = new javax.swing.JTextField();
+        txtSemilla = new javax.swing.JTextField();
+        txtT = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblSalida = new javax.swing.JLabel();
+        txtD = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaSalida = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaEmparejamiento = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAreaChi = new javax.swing.JTextArea();
 
         jTextField2.setText("jTextField2");
 
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Semilla");
+        jLabel1.setText("Semilla (*no debe ser divisible entre 2 y 5 )");
 
-        jLabel2.setText("Constante multiplicativa");
+        jLabel2.setText("Constante multiplicativa (a=200t±p)");
 
-        jLabel3.setText("Modulo");
+        jLabel3.setText("Modulo (patencia 10)");
 
         jLabel4.setText("Congruencial multiplicativo");
 
-        cbxSemilla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "3", "7", "11", "13", "17", "19", "23", "29", "31", "37", "41", "43", "47", "53", "59", "61", "67", "71", "73", "79", "83", "89", "97" }));
-        cbxSemilla.addActionListener(new java.awt.event.ActionListener() {
+        cbP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3", "7", "11", "13", "17", "19", "23", "29", "31", "37", "41", "43", "47", "53", "59", "61", "67", "71", "73", "79", "83", "89", "97" }));
+        cbP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxSemillaActionPerformed(evt);
-            }
-        });
-
-        txtConsM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConsMActionPerformed(evt);
-            }
-        });
-
-        txtModulo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtModulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtModuloActionPerformed(evt);
+                cbPActionPerformed(evt);
             }
         });
 
@@ -86,264 +91,411 @@ public class vista extends javax.swing.JFrame {
             }
         });
 
+        txtSemilla.setToolTipText("");
+        txtSemilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSemillaActionPerformed(evt);
+            }
+        });
+
+        txtT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("p");
+
+        jLabel6.setText("t");
+
+        jLabel7.setText("m:10 y d:");
+
+        lblSalida.setText("SERIE");
+
+        txtD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDActionPerformed(evt);
+            }
+        });
+
+        textAreaSalida.setColumns(20);
+        textAreaSalida.setRows(5);
+        textAreaSalida.setEnabled(false);
+        jScrollPane1.setViewportView(textAreaSalida);
+
+        textAreaEmparejamiento.setColumns(20);
+        textAreaEmparejamiento.setRows(5);
+        jScrollPane2.setViewportView(textAreaEmparejamiento);
+
+        jLabel8.setText("Empajeramiento");
+
+        textAreaChi.setColumns(20);
+        textAreaChi.setRows(5);
+        jScrollPane3.setViewportView(textAreaChi);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(btnCalcular)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cajaSalida))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
+                .addGap(150, 150, 150)
+                .addComponent(jLabel4)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtT, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtModulo)
-                            .addComponent(cbxSemilla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtConsM)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(36, 36, 36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSalida))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(12, 12, 12)
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(cbxSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addComponent(txtConsM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCalcular)
-                .addGap(18, 18, 18)
-                .addComponent(cajaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSalida)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane2)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)))
+                        .addGap(25, 25, 25))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxSemillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSemillaActionPerformed
+    private void cbPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPActionPerformed
 
-    }//GEN-LAST:event_cbxSemillaActionPerformed
-
-    private void txtModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModuloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtModuloActionPerformed
-
-    private void txtConsMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtConsMActionPerformed
+    }//GEN-LAST:event_cbPActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        Double seeb = Double.parseDouble((String)cbxSemilla.getSelectedItem());
-        int cMultiplicativa = Integer.parseInt(txtConsM.getText().toString());
-        modulo = Integer.parseInt(txtModulo.getText().toString());
-        int semilla = seeb.intValue();
-        int t = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor de t"));
-        int a = (200*t) - semilla;
-        int d = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor de d"));
-        int aux = 0;
-        double[] arregl = new double[1];
-        aux = modulo;
-        int periodo;
-        double suma = 0;
-        int resta;
-        double min = 0;
-        ArrayList<Integer> miArrayList = new ArrayList<Integer>();
-        double div = 0;
-        double residuo = 0;
-        int aleatorio = 0;
-        double select = 0;
-        if (d >= 5) {
-            resta = d - 2;
+        //variables para calcular la serie
+        Double seeb = Double.parseDouble(txtSemilla.getText().toString());
+        Double t = Double.parseDouble(txtT.getText().toString());
+        Double p = Double.parseDouble((String) cbP.getSelectedItem().toString());
+        int d = Integer.parseInt((String) txtD.getText().toString());
+        //Formula para determinar a
+        Double a = 200 * t + p;
+        Double m;
+        //Contadores para la iteraciones
+        int i = 1;
+        int j = 0;
+        int k = 0;
+        //matrices
+        Double[] matrizX;
+        Double[] matrizY;
 
-            periodo = (int) (5 * (Math.pow(modulo, resta)));
-            for (int i = 0; i < periodo; i++) {
-                residuo = (a * seeb) % modulo;
-                seeb = residuo;
-            }
-            prom2 = prom / periodo;
-
-            z = (prom2 - 0.5) * Math.sqrt(100) / divisor;
-
-            if (z < 1.96) {
-                JOptionPane.showMessageDialog(null, "No se puede rechazar la hipotesis de que estos numeros pseudoaleatorios tienen una media de 0.5");
-            } else {
-                JOptionPane.showMessageDialog(null, " Se rechaza la hipotesis de que estos numeros pseudoaleatorios tienen una media de 0.5");
-            }
-        }
-
-        if (d < 5) {
-            for (int i = 1; i <= modulo; i++) {
-                for (int j = modulo; j > 0; j--) {
-                    double rai = Math.sqrt(i);
-                    double raj = Math.sqrt(j);
-                    if (Par(rai) == true && Par(raj) == true) {
-                        // System.out.println(rai + "   " + raj);
-
-                        if ((Math.pow(rai, 2)) * (Math.pow(raj, 2)) == aux || (Math.pow(rai, 2)) + (Math.pow(raj, 2)) == aux) {
-
-                            if (rai != 1 && raj != 1) {
-                                min = mcm(rai, raj);
-                                System.out.println(min);
-                                periodo = (int) min;
-                                miArrayList.add(periodo);
-                            }
+        //Arreglos
+        int[] vector1 = new int[2];
+        int[] vector2 = new int[2];
+        Double[] resultadoX;
+        Double[] resultadoY;
+        m = Math.pow(10, d);
+        //cotandor 
+        int comparador = 2;
+        //INICIO
+        if (seeb % 2 == 0 || seeb % 5 == 0 || rltvPrimo(seeb, m)) {
+            JOptionPane.showMessageDialog(null, "El valor de la semilla no cumple los requisitos especificados otro", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (d < 5) {
+                int value = 2;
+                Double x = m;
+                while (x > 1) {
+                    if (x % value == 0) {
+                        if (value > comparador) {
+                            comparador = value;
+                            k++;
                         }
-
+                        vector2[k] = value;
+                        vector1[k] = i;
+                        x = x / value;
+                        i++;
+                    } else {
+                        j++;
+                        i = 1;
+                        value = value + 1;
                     }
                 }
+                Double p1 = Math.pow(vector2[0], vector1[0] - 1) * (vector2[0] - 1);
+                Double p2 = Math.pow(vector2[1], vector1[1] - 1) * (vector2[1] - 1);
+                //Double mcm = Math.min(p1, p2);
+                int number1 = (int) p1.doubleValue();
+                int number2 = (int) p2.doubleValue();
+                System.out.printf("n1" + number1 + " " + number2);
+                double number;
+                int limit = (int) mcm(number1, number2);
+                double[] vector = new double[limit];
+
+                //determinar el tamaño de la matriz
+                System.out.println("++++" + limit);
+                String text = "";
+                /////
+                int n = mcm(number1, number2);
+                System.out.println("print" + n);
+                resultadoX = new Double[n];
+                resultadoY = new Double[n];
+                double presentar;
+                int conut = 0;
+                for (int l = 1; l <= limit; l++) {
+                    number = (a * seeb) % m;
+                    resultadoX[l - 1] = number;
+                    //asignamos valores a la matriz
+                    vector[l - 1] = number / 100;//para que los numeros sean menores a 1 y piedan contenplarse
+                    // System.out.println(l + "  " + numero);
+                    text += l + "       " + number + "\n";
+                    //System.out.println(l + "     " + number);
+                    System.out.println("array" + resultadoX[l - 1] + "y " + resultadoY[l - 1]);
+                    seeb = number;
+                    // resultadoX[l] = presentar;
+                }
+
+                //text +="</body></html>";
+                // System.out.println(""+text);
+                textAreaSalida.setText(text);
+                //estos vectores simularan 
+
+                //___________
+                matrizX = new Double[limit - 1];
+                matrizY = new Double[limit - 1];
+                for (int r = 0; r < limit; r++) {
+                    //System.out.println(matriz.length); 
+                    //System.out.println(matriz[n]); 
+                    if (r < limit - 1) {
+                        matrizX[r] = vector[r];
+                        matrizY[r] = vector[r + 1];
+                    }
+                }
+                String parejas = "";
+                for (int r = 0; r < limit - 1; r++) {
+                    //System.out.println(matriz.length); 
+                    //System.out.println(matriza[n]+""+matrizb[n]); 
+                    //parejas+= "<br>"+matriza[n]+"       "+matrizb[n];
+
+                    parejas += "[" + matrizX[r] + "],[" + matrizY[r] + "]\n";
+                }
+                textAreaEmparejamiento.setText(parejas);
+
+                //por ahora lo llenamos de ceros
+                int[] registerMatriz = new int[25];//calcula las repeticiones o feecunencia observadas
+                for (int r = 0; r < 25; r++) {
+                    registerMatriz[r] = 0;
+                }
+
+                //Ahora llenamos el numero de repeticiones se ha considerado una matriz
+                //de 5*5
+                for (int r = 0; r < limit - 1; r++) {
+                    //nos devuelve la posicion en X
+                    int x1 = returnPosition(matrizX[r]);
+                    //nos devuelve la posicion en Y
+                    int y1 = returnPosition(matrizY[r]);
+                    //nos devuelve la posicion enumerados de 0 a 24 cuadros
+                    int pos = x1 + y1 * (5);
+                    //aumentamos un valor de acuerdo a la posicion que se calculo
+                    registerMatriz[pos] += 1;
+                }
+                int cont = 1;
+                for (int r = 0; r < 25; r++) {
+                    System.out.println(registerMatriz[r]);
+                    //serie += "<br>" + cont + "[" + registerMatriz[r] + "]";
+                    cont++;
+                }
+                //serie += "</body></html>";
+                //lblFO.setText(serie);
+
+//                    for (int n=0; n<25; n++){
+//                        System.out.println(matrizZ[n]); 
+//                    }
+                //Calculamos el valor de la frecuencia esperada
+                double freEsperada = ((double) limit - 1) / 25;
+                //Calculamos el valor de la frecuencia esperada
+               // lblFE.setText("Frecuencia Esperada: " + freEsperada);
+
+                //Creamos un vector el cual va a tomar los valores correspondientes
+                //al chi cuadrada
+                Double[] chiCuadrado = new Double[25];
+               // String serieChi = "<html><body>Serie Chi";
+                int cont2 = 1;
+                for (int r = 0; r < 25; r++) {
+                    chiCuadrado[r] = ((freEsperada - registerMatriz[r]) * (freEsperada - registerMatriz[r])) / freEsperada;
+                   // serieChi += "<br>" + cont2 + "[" + chiCuadrado[r] + "]";
+                    cont2++;
+                }
+                //serieChi += "</body></html>";
+                //textAreaChi.setText(chiCuadrado[]);
+
+//                    for (int n=0; n<25; n++){
+//                        chiCuadrado[n]=((freEsperada-matrizZ[n])*(freEsperada-matrizZ[n]))/freEsperada;
+//                    }
+                //Realizamos la suma del del vector el cual tiene los valores del chi-cudrada
+                double sumaChiCuadrado = 0;
+                for (int r = 0; r < 25; r++) {
+                    //System.out.println(matrizZ[n]); 
+                    sumaChiCuadrado += chiCuadrado[r];
+                     //System.out.println("Chi" + sumaChiCuadrado);
+                }
+                //Realizamos la verificacion con respecto al valor de la tabla de chi-cuadrada
+
+                if (sumaChiCuadrado <= 36.415) {
+                        textAreaChi.setText("Se acepta la dependencia: " + sumaChiCuadrado + " es menor a: " + 36.415);
+                       // textAreaChi.setText("Suma chi-cuadrada: " + sumaChiCuadrado);
+                } else {
+                    textAreaChi.setText("Se rechaza la dependencia: " + sumaChiCuadrado + " es mayor a: " + 36.415);    
+                    //textAreaChi.setText("Suma chi-cuadrada: " + sumaChiCuadrado);
+                    
+                }
+            //___________
+        }else {
+                m = 0.00;
+                d = d - 2;
+                m = 5 * (Math.pow(10, d));//modulo
+                double number;
+                String text = "";
+                for (int l = 1; l <= m; l++) {
+                    number = (a * seeb) % m;
+                    System.out.println(l + "     " + number + "\n");
+                    //resultado[l] = numero;
+                    text += l + "       " + number + "\n";
+                    seeb = number;
+                }
+                
+                //text += "</body></html>";
+                //System.out.println(""+text);
+
+                textAreaSalida.setText(text);
             }
-
-            aleatorio = (int) Math.floor(Math.random() * (miArrayList.size()));
-            String resultado = "";
-            for (int i = 0; i < miArrayList.get(aleatorio); i++) {
-
-                residuo = (a * seeb) % modulo;
-
-                cajaSalida.setText(" " + residuo);
-
-                resultado = resultado + (i + " | " + residuo + "\n");
-                seeb = residuo;
-            }
-            prom2 = prom / miArrayList.get(aleatorio);
-            JOptionPane.showMessageDialog(null, "n  " + "  X\n" + resultado);
-             cajaSalida.setText(resultado);
-
-            z = (prom2 - 0.5) * Math.sqrt(100) / divisor;
-
-            if (z < 1.96) {
-               JOptionPane.showMessageDialog(null, "No se puede rechazar la hipótesis de que estos numeros pseudoaleatorios tienen una media de 0.5");
-            } else {
-                JOptionPane.showMessageDialog(null, " Se rechaza la hipótesis de que estos numeros pseudoaleatorios tienen una media de 0.5");
-            }
-        
         }
-        ///
-        /*  int i, numero;
-        double numero2;
+        //FIN
 
-        int[] resEntero = new int[100];
-        double[] resDecimal = new double[100];
-        for (i = 1; i <= 20; i++) {
-            numero = (cMultiplicativa * seeb) % modulo;
-            numero2 = (double) numero / (double) (modulo - 1);
-            resEntero[i] = numero;
-            resDecimal[i] = numero2;
-            //System.out.printf("%d. %d (%.4f)\n", i, numero, numero2);
-            seeb = numero;
-            i++;
-        }
-        for (int j = 0; j <= resDecimal.length; j++) {
-
-            System.out.println(resEntero[j] + "/" + resDecimal[j]);
-        }*/
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void txtTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTActionPerformed
+
+    private void txtSemillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSemillaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSemillaActionPerformed
+
+    private void txtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDActionPerformed
 
     /**
      * @param args the command line arguments
      */
 //metodos
-    public int MCM(int mod) {
-        //descomopocicion de un numero
-        //divicion
-        int n1 = 1;
-        int n2 = 0;
-        int dividendo = mod;
-        int divisor = 2;
-        int cociente = 0;
-        int residuo = 0;
-        //mmcm
-        int mcm = 0;
-        int min = 0;
-        if (residuo == 0) {
-            cociente = dividendo / divisor;
-            residuo = dividendo % divisor;
-            if (residuo == residuo) {
-                n1 = divisor * n1;
-            } else {
-
-            }
-        } else if (residuo != 0) {
-            divisor++;
+//METODO PARA COMPROBAR QUE EL NUMEROINGRESADO SE  RELATIVO PRIMIO DE M
+    public boolean rltvPrimo(double a, double b) {
+        Double max = b;
+        if (a >= b) {
+            max = a;
         }
+        int contador = 0;
+        for (int i = 2; i <= max; i++) {
+            if (a % i == 0 && b % i == 0) {
+                contador++;
+            }
+        }
+        return contador != 0;
+    }
+//metodo para calcular el MCM
 
+    static int mcm(int n1, int n2) {
+        int mcm = 0;
+        int a = Math.max(n1, n2);
+        int b = Math.min(n1, n2);
+        mcm = (a / MCD(a, b)) * b;
         return mcm;
     }
 
-    public static boolean Par(double num1) {
-        if (num1 % 1 == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    //METODO PARA ENCONTRAR EL MCD, 
+    public static int MCD(int n1, int n2) {
+        int mcd = 0;
+        int a = Math.max(n1, n2);
+        int b = Math.min(n1, n2);
+        do {
+            mcd = b;
+            b = a % b;
+            a = mcd;
+        } while (b != 0);
+        return mcd;
+
     }
 
-    public static boolean impar(double num2) {
-        if (num2 % 2 == 0) {
-            return false;
+    public int returnPosition(Double valor) {
+        if (valor <= 0.2) {
+            return 0;
+        } else if (valor <= 0.4) {
+            return 1;
+        } else if (valor <= 0.6) {
+            return 2;
+        } else if (valor <= 0.8) {
+            return 3;
         } else {
-            return true;
+            return 4;
         }
-    }
-
-    public static boolean rltvPrimo(int a, int b) {
-
-        int max;
-        if (a >= b) {
-            max = a;
-        } else {
-            max = b;
-        }
-        int count = 0;
-        for (int i = 2; i <= max; i++) {
-            if (a % i == 0 && b % i == 0) {
-                count++;
-            }
-        }
-        if (count == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    static double mcm(double a, double b) {
-        double multiplo;
-
-        if (a > b) {
-            multiplo = a;
-        } else {
-            multiplo = b;
-        }
-
-        while (multiplo % a != 0 || multiplo % b != 0) {
-            multiplo++;
-        }
-        return multiplo;
     }
 
     //fin metodos
@@ -382,14 +534,27 @@ public class vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JTextField cajaSalida;
-    private javax.swing.JComboBox<String> cbxSemilla;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbP;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField txtConsM;
-    private javax.swing.JTextField txtModulo;
+    private javax.swing.JLabel lblSalida;
+    private javax.swing.JTextArea textAreaChi;
+    private javax.swing.JTextArea textAreaEmparejamiento;
+    private javax.swing.JTextArea textAreaSalida;
+    private javax.swing.JTextField txtD;
+    private javax.swing.JTextField txtSemilla;
+    private javax.swing.JTextField txtT;
     // End of variables declaration//GEN-END:variables
 }

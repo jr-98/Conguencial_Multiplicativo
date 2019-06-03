@@ -53,6 +53,7 @@ public class vista extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         textAreaChi = new javax.swing.JTextArea();
+        btnReturn = new javax.swing.JButton();
 
         jTextField2.setText("jTextField2");
 
@@ -133,6 +134,13 @@ public class vista extends javax.swing.JFrame {
         textAreaChi.setRows(5);
         jScrollPane3.setViewportView(textAreaChi);
 
+        btnReturn.setText("Return");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,23 +160,25 @@ public class vista extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(2, 2, 2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnReturn))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(97, 97, 97)
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(2, 2, 2))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +218,9 @@ public class vista extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(txtD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43)
-                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCalcular)
+                            .addComponent(btnReturn)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,9 +229,8 @@ public class vista extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
                         .addGap(25, 25, 25))))
         );
 
@@ -229,7 +240,7 @@ public class vista extends javax.swing.JFrame {
     private void cbPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPActionPerformed
 
     }//GEN-LAST:event_cbPActionPerformed
-
+    
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         //variables para calcular la serie
         Double seeb = Double.parseDouble(txtSemilla.getText().toString());
@@ -442,6 +453,13 @@ public class vista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDActionPerformed
 
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);//ocualta lla ventana acutal
+        Main.main(null);//regresa a la clase principal
+        
+    }//GEN-LAST:event_btnReturnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -497,7 +515,84 @@ public class vista extends javax.swing.JFrame {
             return 4;
         }
     }
+    ///metodo para calcular los congruenciales multiplicativos
+    public Double[] cMultiplicativo(Double seeb,Double t, Double p, int d){
+        //Double seeb = seeb;
+        //Double t = Double.parseDouble(txtT.getText().toString());
+        //Double p = Double.parseDouble((String) cbP.getSelectedItem().toString());
+        //int d = Integer.parseInt((String) txtD.getText().toString());
+        //Formula para determinar a
+        Double a = 200 * t + p;
+        Double m;
+        //Contadores para la iteraciones
+        int i = 1;
+        int j = 0;
+        int k = 0;
+        //Arreglos
+        int[] vector1 = new int[2];
+        int[] vector2 = new int[2];
+        Double[] CMultiplicativo = null;
+        m = Math.pow(10, d);
+        //cotandor 
+        int comparador = 2;
+        //INICIO
+        if (seeb % 2 == 0 || seeb % 5 == 0 || rltvPrimo(seeb, m)) {
+            JOptionPane.showMessageDialog(null, "El valor de la semilla no cumple los requisitos especificados otro", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (d < 5) {
+                int value = 2;
+                Double x = m;
+                while (x > 1) {
+                    if (x % value == 0) {
+                        if (value > comparador) {
+                            comparador = value;
+                            k++;
+                        }
+                        vector2[k] = value;
+                        vector1[k] = i;
+                        x = x / value;
+                        i++;
+                    } else {
+                        j++;
+                        i = 1;
+                        value = value + 1;
+                    }
+                }
+                Double p1 = Math.pow(vector2[0], vector1[0] - 1) * (vector2[0] - 1);
+                Double p2 = Math.pow(vector2[1], vector1[1] - 1) * (vector2[1] - 1);
+                //Double mcm = Math.min(p1, p2);
+                int number1 = (int) p1.doubleValue();
+                int number2 = (int) p2.doubleValue();
+                //System.out.printf("n1" + number1 + " " + number2);
+                double number;
+                int limit = (int) mcm(number1, number2);
+                double[] vector = new double[limit];
 
+                //determinar el tamaño de la matriz
+                //System.out.println("++++" + limit);
+                String text = "";
+                /////
+                int n = mcm(number1, number2);
+                //System.out.println("print" + n);
+                CMultiplicativo = new Double[n];
+                for (int l = 1; l <= limit; l++) {
+                    number = (a * seeb) % m;
+                    CMultiplicativo[l - 1] = number;
+                    //asignamos valores a la matriz
+                    // System.out.println(l + "  " + numero);
+                    text += l + "       " + number + "\n";
+                    //System.out.println(l + "     " + number);
+                    seeb = number;
+                    // resultadoX[l] = presentar;
+                }
+               
+
+                //text +="</body></html>";
+               // System.out.println(""+text);
+            }
+        }
+        return CMultiplicativo;
+    }
     //fin metodos
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -524,16 +619,16 @@ public class vista extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new vista().setVisible(true);
             }
         });
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnReturn;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbP;
     private javax.swing.JFrame jFrame1;

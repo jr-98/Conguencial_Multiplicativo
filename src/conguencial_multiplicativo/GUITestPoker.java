@@ -7,7 +7,7 @@ package conguencial_multiplicativo;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import javafx.scene.chart.Chart;
+//import javafx.scene.chart.Chart;
 
 /**
  *
@@ -50,6 +50,9 @@ public class GUITestPoker extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaData = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAreaFE = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +116,12 @@ public class GUITestPoker extends javax.swing.JFrame {
 
         jLabel6.setText("Datos");
 
+        textAreaFE.setColumns(20);
+        textAreaFE.setRows(5);
+        jScrollPane3.setViewportView(textAreaFE);
+
+        jLabel9.setText("console");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,13 +145,17 @@ public class GUITestPoker extends javax.swing.JFrame {
                         .addComponent(txtTPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSalida))
-                .addGap(18, 18, 18)
+                    .addComponent(lblSalida)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(147, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -187,11 +200,13 @@ public class GUITestPoker extends javax.swing.JFrame {
                 .addGap(0, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSalida)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -280,35 +295,117 @@ public class GUITestPoker extends javax.swing.JFrame {
         quintilla = 0.00010;
         //array to store values of the given array in values divided by 10^5(10^numbers of carts)\
         int n = serie.length;
+        System.out.println("  h  " +n);
         int nCards = 5; //number of cards
         Double[] numbersFloat = new Double[n];//Decimal numbres
         Integer[] descompose = new Integer[n];//Array of Array
         //Fe
         int cont = 0;
         String print = "";
+        String PrintTotal="";
         double number = 0;
         String str;
         Integer[] digitInt = new Integer[6];
         double FrE;
         int[] FE = new int[10];
+        int[] baraja = new int[n];
+        for (int i = 0; i < 10; i++) {
+            FE[i] = 0;
+        }
         DecimalFormat df = new DecimalFormat("#.00000");//lomit the number of decimals
-        for (int i = 0; i <= n; i++) {
+
+        for (int i = 0; i < n; i++) {
             number = serie[i] / Math.pow(10, nCards);
             numbersFloat[i] = number;
             print += df.format(number) + "\n";
             str = df.format(number);
             textAreaData.setText(print);
-            //
             
             char[] digits = str.toString().toCharArray();
-            for (int j = 0; j <= digits.length; j++) {
-                String numStr = Character.toString(digits[j + 1]);
-                int num = Integer.parseInt(numStr);
-                digitInt[j] = num;
-                //condiciones
-                
+            String numStr = Character.toString(digits[i + 1]);
+            int num = Integer.parseInt(numStr);
+            digitInt[i] = num;
+            
+            for (int j = 0; j <digits.length; j++) {
+
+                for (int k = j + 1; k < digits.length; k++) {
+
+                    if (digits[j] == digits[k]) {
+                        System.out.println("k  "+digits[k]);
+                        if (digits[k] == 0) {
+                            FE[0]++;
+                            //n0++;
+                        } else if (digits[k] == 1) {
+                            //n1++;
+                            FE[1]++;
+
+                        } else if (digits[k] == 2) {
+                            //n2++;
+                            FE[2]++;
+
+                        } else if (digits[k] == 3) {
+                            //n3++;
+                            FE[3]++;
+
+                        } else if (digits[k] == 4) {
+                            //n4++;
+                            FE[4]++;
+
+                        } else if (digits[k] == 5) {
+                            //n5++;
+                            FE[5]++;
+
+                        } else if (digits[k] == 6) {
+                            //n6++;
+                            FE[6]++;
+
+                        } else if (digits[k] == 7) {
+//                          n7++;
+                            FE[7]++;
+
+                        } else if (digits[k] == 8) {
+                            //n8++;
+                            FE[8]++;
+
+                        } else if (digits[k] == 9) {
+                            //n9++;
+                            FE[9]++;
+
+                        }
+
+                    }
+                }
+
             }
-            //
+
+            //System.out.println(i+" n0: "+n0+" n1: "+n1+" n2: "+n2+" n3: "+n3+" n4: "+n4+" n5: "+n5+" n6: "+n6+" n7: "+n7+" n8: "+n8+" n9: "+n9);
+            int checker = 0;
+            for (int k = 0; k < 9; k++) {
+                if (FE[k] == 1) {
+                    checker++;
+                } else if (FE[k] == 3) {
+                    checker = 3;
+                }
+            }
+
+            if (checker == 0) {
+                baraja[i] = 1;
+            } else if (checker == 1) {
+                baraja[i] = 2;
+            } else if (checker == 2) {
+                baraja[i] = 3;
+            } else if (checker == 3) {
+                baraja[i] = 4;
+            } else if (checker == 6) {
+                baraja[i] = 5;
+            }
+
+            for (int z = 0; z < 10; z++) {
+                FE[z] = 0;
+            System.out.println("[" + i + "]" + baraja[i]);
+            PrintTotal+= "[" + i + "]" + baraja[i]+"\n";
+            }
+             textAreaFE.setText(PrintTotal);
         }
 
     }
@@ -361,10 +458,13 @@ public class GUITestPoker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblSalida;
     private javax.swing.JTextArea textAreaData;
+    private javax.swing.JTextArea textAreaFE;
     private javax.swing.JTextArea textAreaSalidaPoker;
     private javax.swing.JTextField txtDPoker;
     private javax.swing.JTextField txtSemillaPoker;

@@ -42,6 +42,8 @@ public class Main extends vista {
                     poker.show(true);
                     break;
                 case 4://Prueba de las corridas
+                    pruebasCorridas pc = new pruebasCorridas();
+                    pc.show();
                     break;
                 case 5://salir
                     JOptionPane.showMessageDialog(null,"Seguro que desae salir","Salir",JOptionPane.INFORMATION_MESSAGE);

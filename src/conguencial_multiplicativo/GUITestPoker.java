@@ -53,6 +53,8 @@ public class GUITestPoker extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         textAreaFE = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +88,7 @@ public class GUITestPoker extends javax.swing.JFrame {
             }
         });
 
-        btnCalcularPoker.setText("Calcular");
+        btnCalcularPoker.setText("Calcular serie Ingresada");
         btnCalcularPoker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularPokerActionPerformed(evt);
@@ -122,27 +124,46 @@ public class GUITestPoker extends javax.swing.JFrame {
 
         jLabel9.setText("console");
 
+        jButton1.setText("Calcular serie predefinida");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("<---");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(btnCalcularPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel4)
-                        .addGap(4, 4, 4)
-                        .addComponent(txtTPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(49, 49, 49)
+                            .addComponent(jLabel4)
+                            .addGap(4, 4, 4)
+                            .addComponent(txtTPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(27, 27, 27)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtDPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCalcularPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(14, 14, 14)))
+                    .addComponent(jButton2))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSalida)
@@ -193,9 +214,16 @@ public class GUITestPoker extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel7)
                     .addComponent(txtDPoker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(btnCalcularPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCalcularPoker, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jButton2)))
+                .addGap(12, 12, 12))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,14 +277,26 @@ public class GUITestPoker extends javax.swing.JFrame {
         Double t = Double.parseDouble(txtTPoker.getText().toString());
         Double p = Double.parseDouble((String) cbPPoker.getSelectedItem().toString());
         int d = Integer.parseInt((String) txtDPoker.getText().toString());
-        vista.cMultiplicativo(seeb, t, p, d);
+        vista.cMultiplicativo(seeb, t, p, d);//send to data to method called cMultiplicativo
         Double[] conMult = vista.cMultiplicativo(seeb, t, p, d);
-        present(conMult);//se presenta la seri generada
-        int longitude = conMult.length;
-        pokerTest(conMult);
-        //System.out.println("ssss " + longitude);
-
-        //FIN
+        //For convert Double to String
+        int n = conMult.length;
+        String[] serie = new String[n];
+        String printSerie = "";
+        String[] serieDecimal = new String[n];
+        String printSDecimal = "";
+        //For present the Decimals whit 5 digits
+        DecimalFormat df = new DecimalFormat("#.00000");
+        for (int i = 0; i < n; i++) {
+            String convert = String.valueOf(conMult[i]);
+            serie[i] = convert;
+            printSerie += serie[i] + "\n";
+            serieDecimal[i] = String.valueOf(conMult[i] / 100000);
+            printSDecimal += df.format(conMult[i] / 100000) + "\n";
+        }
+        textAreaSalidaPoker.setText(printSerie);
+        textAreaData.setText(printSDecimal);
+        pokerTest(serieDecimal);
     }//GEN-LAST:event_btnCalcularPokerActionPerformed
 
     private void txtSemillaPokerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSemillaPokerActionPerformed
@@ -266,6 +306,18 @@ public class GUITestPoker extends javax.swing.JFrame {
     private void txtTPokerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTPokerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTPokerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String[] serie = returnSerie();
+        pokerTest(serie);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Main.main(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
 //Methods
     //Method for present
 
@@ -284,7 +336,7 @@ public class GUITestPoker extends javax.swing.JFrame {
     }
 
     //Method for claculate the poker test
-    public void pokerTest(Double[] serie) {
+    public void pokerTest(String[] serie) {
         //Types of poker
         final double allDiferent, aPair, twoPair, tercia, full, poker, quintilla;
         allDiferent = 0.30240;
@@ -293,121 +345,228 @@ public class GUITestPoker extends javax.swing.JFrame {
         tercia = 0.07200;
         poker = 0.00450;
         quintilla = 0.00010;
-        //array to store values of the given array in values divided by 10^5(10^numbers of carts)\
-        int n = serie.length;
-        System.out.println("  h  " +n);
-        int nCards = 5; //number of cards
-        Double[] numbersFloat = new Double[n];//Decimal numbres
-        Integer[] descompose = new Integer[n];//Array of Array
-        //Fe
-        int cont = 0;
-        String print = "";
-        String PrintTotal="";
-        double number = 0;
-        String str;
-        Integer[] digitInt = new Integer[6];
-        double FrE;
-        int[] FE = new int[10];
-        int[] baraja = new int[n];
-        for (int i = 0; i < 10; i++) {
-            FE[i] = 0;
+        String texto1 = "";
+        int num = serie.length;
+        for (int i = 0; i < serie.length; i++) {
+            texto1 += "[" + i + "]" + " " + serie[i] + "\n";
         }
-        DecimalFormat df = new DecimalFormat("#.00000");//lomit the number of decimals
+        textAreaData.setText(texto1);
 
-        for (int i = 0; i < n; i++) {
-            number = serie[i] / Math.pow(10, nCards);
-            numbersFloat[i] = number;
-            print += df.format(number) + "\n";
-            str = df.format(number);
-            textAreaData.setText(print);
-            
-            char[] digits = str.toString().toCharArray();
-            String numStr = Character.toString(digits[i + 1]);
-            int num = Integer.parseInt(numStr);
-            digitInt[i] = num;
-            
-            for (int j = 0; j <digits.length; j++) {
+        String texto2 = "";
+        String texto3 = "";
 
-                for (int k = j + 1; k < digits.length; k++) {
+        String[] separator = new String[2];
 
-                    if (digits[j] == digits[k]) {
-                        System.out.println("k  "+digits[k]);
-                        if (digits[k] == 0) {
-                            FE[0]++;
-                            //n0++;
-                        } else if (digits[k] == 1) {
-                            //n1++;
-                            FE[1]++;
+        int[] cases = new int[num];
+        int[] position = new int[10];
+        for (int i = 0; i < 10; i++) {
+            position[i] = 0;
+        }
+        for (int i = 0; i < serie.length; i++) {
+     
+            texto2 = String.valueOf(serie[i]);
+    
 
-                        } else if (digits[k] == 2) {
-                            //n2++;
-                            FE[2]++;
+            separator = texto2.split("\\.");
+            texto3 = separator[1];
 
-                        } else if (digits[k] == 3) {
-                            //n3++;
-                            FE[3]++;
+            for (int j = 0; j < texto3.length(); j++) {
 
-                        } else if (digits[k] == 4) {
-                            //n4++;
-                            FE[4]++;
-
-                        } else if (digits[k] == 5) {
-                            //n5++;
-                            FE[5]++;
-
-                        } else if (digits[k] == 6) {
-                            //n6++;
-                            FE[6]++;
-
-                        } else if (digits[k] == 7) {
-//                          n7++;
-                            FE[7]++;
-
-                        } else if (digits[k] == 8) {
-                            //n8++;
-                            FE[8]++;
-
-                        } else if (digits[k] == 9) {
-                            //n9++;
-                            FE[9]++;
-
+                //  System.out.println("tama;o " + texto3.length());
+                for (int k = j + 1; k < texto3.length(); k++) {
+                    //System.out.println("ssss "+ te);
+                    if (texto3.charAt(j) == texto3.charAt(k)) {
+                        if (texto3.charAt(k) == '0') {
+                            position[0]++;
+                        } else if (texto3.charAt(k) == '1') {
+                            position[1]++;
+                        } else if (texto3.charAt(k) == '2') {
+                            position[2]++;
+                        } else if (texto3.charAt(k) == '3') {
+                            position[3]++;
+                        } else if (texto3.charAt(k) == '4') {
+                            position[4]++;
+                        } else if (texto3.charAt(k) == '5') {
+                            position[5]++;
+                        } else if (texto3.charAt(k) == '6') {
+                            position[6]++;
+                        } else if (texto3.charAt(k) == '7') {
+                            position[7]++;
+                        } else if (texto3.charAt(k) == '8') {
+                            position[8]++;
+                        } else if (texto3.charAt(k) == '9') {
+                            position[9]++;
                         }
-
                     }
                 }
-
             }
 
-            //System.out.println(i+" n0: "+n0+" n1: "+n1+" n2: "+n2+" n3: "+n3+" n4: "+n4+" n5: "+n5+" n6: "+n6+" n7: "+n7+" n8: "+n8+" n9: "+n9);
-            int checker = 0;
-            for (int k = 0; k < 9; k++) {
-                if (FE[k] == 1) {
-                    checker++;
-                } else if (FE[k] == 3) {
-                    checker = 3;
+            int s = 0;
+            for (int n = 0; n < 9; n++) {
+                if (position[n] == 1) {
+                    s++;
+                } else if (position[n] == 3) {
+                    s = 3;
                 }
             }
-
-            if (checker == 0) {
-                baraja[i] = 1;
-            } else if (checker == 1) {
-                baraja[i] = 2;
-            } else if (checker == 2) {
-                baraja[i] = 3;
-            } else if (checker == 3) {
-                baraja[i] = 4;
-            } else if (checker == 6) {
-                baraja[i] = 5;
+            if (s == 0) {//todos diferentes
+                cases[i] = 1;
+            } else if (s == 1) { //par
+                cases[i] = 2;
+            } else if (s == 2) {//par doble
+                cases[i] = 3;
+            } else if (s == 3) {//tercia
+                cases[i] = 4;
+            } else if (s == 6) {//full
+                cases[i] = 5;
             }
-
             for (int z = 0; z < 10; z++) {
-                FE[z] = 0;
-            System.out.println("[" + i + "]" + baraja[i]);
-            PrintTotal+= "[" + i + "]" + baraja[i]+"\n";
+                position[z] = 0;
             }
-             textAreaFE.setText(PrintTotal);
+        }
+        int caso1 = 0;
+        int caso2 = 0;
+        int caso3 = 0;
+        int caso4 = 0;
+        int caso5 = 0;
+        String printFE = "";
+        for (int i = 0; i < cases.length; i++) {
+            printFE += "[" + i + "]" + " " + cases[i] + "\n";
+            if (cases[i] == 1) {
+                caso1++;
+            } else if (cases[i] == 2) {
+                caso2++;
+            } else if (cases[i] == 3) {
+                caso3++;
+            } else if (cases[i] == 4) {
+                caso4++;
+            } else {
+                caso5++;
+            }
+        }
+        textAreaFE.setText(printFE);//Calculo de estadisticos oara verificacion de la serie
+        double est1 = (Math.pow((50.4 - (double) caso1), 2)) / 50.4;
+        double est2 = (Math.pow((43.2 - (double) caso2), 2)) / 43.2;
+        double est3 = (Math.pow((2.7 - (double) caso3), 2)) / 2.7;
+        double est4 = (Math.pow((3.6 - (double) caso4), 2)) / 3.6;
+        double est5 = (Math.pow((0.1 - (double) caso5), 2)) / 0.1;
+        double totalEst = est1 + est2 + est3 + est4 + est5;
+        textAreaSalidaPoker.setText("suma estadistico: " + totalEst);
+        if (totalEst < 9.49) {
+            System.out.println("Se acepta el estadistico:" + totalEst + ", Es menor a 9.49");
+            textAreaSalidaPoker.setText("Se acepta el estadistico:" + totalEst + ", Es menor a 9.49");
+        } else {
+            System.out.println("Se rechaza el estadistico:" + totalEst + ", Es mayor a 9.49");
+            textAreaSalidaPoker.setText("Se rechaza el estadistico:" + totalEst + ", Es mayor a 9.49");
         }
 
+    }
+//Method that returns a array 
+
+    public String[] returnSerie() {
+        String[] serie = new String[100];
+        serie[0] = "0.03991";
+        serie[1] = "0.38555";
+        serie[2] = "0.17546";
+        serie[3] = "0.32643";
+        serie[4] = "0.69572";
+        serie[5] = "0.24122";
+        serie[6] = "0.61196";
+        serie[7] = "0.30532";
+        serie[8] = "0.03788";
+        serie[9] = "0.48228";
+        serie[10] = "0.88618";
+        serie[11] = "0.71299";
+        serie[12] = "0.27954";
+        serie[13] = "0.80863";
+        serie[14] = "0.33564";
+        serie[15] = "0.90899";
+        serie[16] = "0.78038";
+        serie[17] = "0.55986";
+        serie[18] = "0.87539";
+        serie[19] = "0.16818";
+        serie[20] = "0.10461";
+        serie[21] = "0.95554";
+        serie[22] = "0.73704";
+        serie[23] = "0.52861";
+        serie[24] = "0.68777";
+        serie[25] = "0.66591";
+        serie[26] = "0.30231";
+        serie[27] = "0.21704";
+        serie[28] = "0.97599";
+        serie[29] = "0.63379";
+        serie[30] = "0.19161";
+        serie[31] = "0.23853";
+        serie[32] = "0.58909";
+        serie[33] = "0.00514";
+        serie[34] = "0.60780";
+        serie[35] = "0.75754";
+        serie[36] = "0.70267";
+        serie[37] = "0.66485";
+        serie[38] = "0.08823";
+        serie[39] = "0.60311";
+        serie[40] = "0.93716";
+        serie[41] = "0.32886";
+        serie[42] = "0.92052";
+        serie[43] = "0.95819";
+        serie[44] = "0.39510";
+        serie[45] = "0.27699";
+        serie[46] = "0.92962";
+        serie[47] = "0.10274";
+        serie[48] = "0.75867";
+        serie[49] = "0.85783";
+        serie[50] = "0.41290";
+        serie[51] = "0.05870";
+        serie[52] = "0.82444";
+        serie[53] = "0.20247";
+        serie[54] = "0.48460";
+        serie[55] = "0.60833";
+        serie[56] = "0.43529";
+        serie[57] = "0.88722";
+        serie[58] = "0.94813";
+        serie[59] = "0.74457";
+        serie[60] = "0.16894";
+        serie[61] = "0.59780";
+        serie[62] = "0.46215";
+        serie[63] = "0.06831";
+        serie[64] = "0.35905";
+        serie[65] = "0.06494";
+        serie[66] = "0.61773";
+        serie[67] = "0.12202";
+        serie[68] = "0.20717";
+        serie[69] = "0.47619";
+        serie[70] = "0.63312";
+        serie[71] = "0.01119";
+        serie[72] = "0.99005";
+        serie[73] = "0.81759";
+        serie[74] = "0.85558";
+        serie[75] = "0.25983";
+        serie[76] = "0.06318";
+        serie[77] = "0.56736";
+        serie[78] = "0.31900";
+        serie[79] = "0.90561";
+        serie[80] = "0.98953";
+        serie[81] = "0.09958";
+        serie[82] = "0.15917";
+        serie[83] = "0.19640";
+        serie[84] = "0.85244";
+        serie[85] = "0.03152";
+        serie[86] = "0.22109";
+        serie[87] = "0.94205";
+        serie[88] = "0.82037";
+        serie[89] = "0.87481";
+        serie[90] = "0.71857";
+        serie[91] = "0.92784";
+        serie[92] = "0.04921";
+        serie[93] = "0.45197";
+        serie[94] = "0.15191";
+        serie[95] = "0.01291";
+        serie[96] = "0.38384";
+        serie[97] = "0.66164";
+        serie[98] = "0.54155";
+        serie[99] = "0.72848";
+
+        return serie;
     }
 
 //End methods
@@ -449,6 +608,8 @@ public class GUITestPoker extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcularPoker;
     private javax.swing.JComboBox<String> cbPPoker;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
